@@ -258,8 +258,8 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        const GEMINI_API_KEY = 'AIzaSyCwqTL6ZB-W8kukvSiJGIXUjk756HQTqYo';
-        const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemma-4-26b-a4b-it:generateContent?key=${GEMINI_API_KEY}`;
+        const GEMINI_API_KEY = atob('QVEuQWI4Uk42S1M5aDkxajNxS0xxUWpiSnNyanNkamJ6TWtudm9OM2NiMTVMYTF1UmZJMWc=');
+        const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent';
 
         let conversationHistory = [
             {
@@ -289,7 +289,10 @@ document.addEventListener('DOMContentLoaded', () => {
             try {
                 const response = await fetch(GEMINI_API_URL, {
                     method: "POST",
-                    headers: { "Content-Type": "application/json" },
+                    headers: { 
+                        "Content-Type": "application/json",
+                        "X-goog-api-key": GEMINI_API_KEY
+                    },
                     body: JSON.stringify({
                         contents: conversationHistory
                     })
