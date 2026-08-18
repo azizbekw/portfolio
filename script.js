@@ -104,34 +104,70 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalOverlay = document.getElementById('projectModalOverlay');
     const modalBody = document.getElementById('modalBody');
     const modalClose = document.getElementById('modalClose');
+    const toastContainer = document.getElementById('toastContainer');
+    const toastText = document.getElementById('toastText');
+    let toastTimeout;
 
-    // Open Modal when clicking project card
+    // Toast Notification helper function
+    function showToast(message) {
+        if (toastContainer && toastText) {
+            toastText.textContent = message;
+            toastContainer.classList.add('show');
+
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toastContainer.classList.remove('show');
+            }, 3500);
+        }
+    }
+
+    // Function to open Modal
+    function openModal(projectId) {
+        const data = projectDetails[projectId];
+        if (data && modalBody && modalOverlay) {
+            let featuresHtml = data.features.map(f => `<li><i class="fa-solid fa-circle-check"></i> ${f}</li>`).join('');
+
+            modalBody.innerHTML = `
+                <span class="modal-badge">${data.category}</span>
+                <h2 class="modal-title">${data.title}</h2>
+                <p class="modal-desc">${data.description}</p>
+                
+                <div class="modal-features">
+                    <h4><i class="fa-solid fa-list-check"></i> Asosiy Funksionallik va Imkoniyatlar:</h4>
+                    <ul>${featuresHtml}</ul>
+                </div>
+
+                <div class="modal-actions">
+                    <a href="${data.githubUrl}" target="_blank" class="btn btn-primary"><i class="fa-brands fa-github"></i> GitHub Repozitoriyani Ochish</a>
+                    <a href="${data.tgUrl}" target="_blank" class="btn btn-telegram"><i class="fa-brands fa-telegram"></i> Telegramda Muloqot</a>
+                </div>
+            `;
+
+            modalOverlay.classList.add('active');
+        }
+    }
+
+    // Project Cards Click Handlers
     document.querySelectorAll('.clickable-card').forEach(card => {
-        card.addEventListener('click', () => {
+        card.addEventListener('click', (e) => {
             const projectId = card.getAttribute('data-project');
-            const data = projectDetails[projectId];
 
-            if (data) {
-                let featuresHtml = data.features.map(f => `<li><i class="fa-solid fa-circle-check"></i> ${f}</li>`).join('');
-
-                modalBody.innerHTML = `
-                    <span class="modal-badge">${data.category}</span>
-                    <h2 class="modal-title">${data.title}</h2>
-                    <p class="modal-desc">${data.description}</p>
-                    
-                    <div class="modal-features">
-                        <h4><i class="fa-solid fa-list-check"></i> Asosiy Funksionallik va Imkoniyatlar:</h4>
-                        <ul>${featuresHtml}</ul>
-                    </div>
-
-                    <div class="modal-actions">
-                        <a href="${data.githubUrl}" target="_blank" class="btn btn-primary"><i class="fa-brands fa-github"></i> GitHub Repozitoriyani Ochish</a>
-                        <a href="${data.tgUrl}" target="_blank" class="btn btn-telegram"><i class="fa-brands fa-telegram"></i> Telegramda Muloqot</a>
-                    </div>
-                `;
-
-                modalOverlay.classList.add('active');
+            if (projectId === 'web-portfolio') {
+                // If HTML portfolio card itself is clicked -> show toast notification
+                showToast("Siz hozirda ushbu loyihaning jonli veb-saytida turibsiz.");
+            } else {
+                // For other cards (e.g. PHP Task Manager) -> open modal
+                openModal(projectId);
             }
+        });
+    });
+
+    // "Batafsil ko'rish" button click handlers
+    document.querySelectorAll('.open-modal-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation(); // prevent card click
+            const projectId = btn.getAttribute('data-modal');
+            openModal(projectId);
         });
     });
 
