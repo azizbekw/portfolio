@@ -259,30 +259,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const GEMINI_API_KEY = 'AIzaSyCwqTL6ZB-W8kukvSiJGIXUjk756HQTqYo';
-        const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${GEMINI_API_KEY}`;
+        const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemma-4-26b-a4b-it:generateContent?key=${GEMINI_API_KEY}`;
 
-        let conversationHistory = [];
-
-        const SYSTEM_INSTRUCTION = {
-            parts: [{
-                text: `Siz Sa'dullayev Azizbekning rasmiy portfolio saytidagi aqlli, do'stona va psixologik maslahatchi AI Yordamchisiz. Sizning asosiy vazifangiz tashrif buyuruvchilar bilan samimiy suhbatlashish va ularni Azizbek bilan ishlashga ishontirishdir.
-
-AZIZBEK HAQIDA MA'LUMOTLAR:
-- Ismi: Sa'dullayev Azizbek
-- Mutaxassisliklari: Java, Python (aiogram 3 Telegram botlar arxitekturasi), PHP (SQLite/MySQL Web Backend), Android Studio (Mobil ilovalar), HTML5/CSS3/JS.
-- Telegram: @azizbeky (https://t.me/azizbeky)
-- Mobil raqami: +998 95 817 0023
-- Instagram: https://www.instagram.com/azizbe.ky
-- Xarakteri: Mas'uliyatli, loyihani sifatli va o'z vaqtida topshiradi, individual yondashadi.
-
-MULOQOT QOIDALARI:
-1. Muloqotni har doim o'zbek tilida, do'stona va professional olib boring.
-2. Foydalanuvchi loyiha yoki dasturlash haqida so'rasa, Azizbekning kuchli tomonlarini maqlang hamda nega aynan u bilan ishlash kerakligini psixologik jihatdan tushuntiring.
-3. Har doim foydalanuvchidan loyihasi haqida so'rang (Masalan: 'Sizga qanday loyiha yoki ilova kerak?').
-4. Har bir javobingiz oxirida foydalanuvchini Telegram orqali Azizbek bilan bog'lanishga undang (@azizbeky).
-5. Foydalanuvchi har qanday umumiy savol yoki mavzuda so'rasa (ilm-fan, texnologiya, hayotiy va b.), xuddi aqlli AI assistant kabi to'liq va foydali javob bering.`
-            }]
-        };
+        let conversationHistory = [
+            {
+                role: "user",
+                parts: [{ text: "Siz Sa'dullayev Azizbekning rasmiy portfolio saytidagi aqlli, do'stona va psixologik maslahatchi AI Yordamchisiz. Azizbek Java, Python (aiogram 3 Telegram botlar), PHP (SQLite Web Backend), Android Studio bo'yicha kuchli dasturchi. Telegram: @azizbeky (+998 95 817 0023). Foydalanuvchilar har qanday savol (matematika, 2+2, dasturlash, umumiy savollar va b.) bersa ham xuddi aqlli AI assistant kabi o'zbek tilida aniq va foydali javob bering, Azizbekning kuchli tomonlarini maqlang va Telegramini (@azizbeky) tavsiya qiling." }]
+            },
+            {
+                role: "model",
+                parts: [{ text: "Assalomu alaykum! Men Sa'dullayev Azizbekning AI yordamchisiman. Sizga qanday masalada yordam bera olaman?" }]
+            }
+        ];
 
         function appendMessage(text, isUser = false) {
             const msgDiv = document.createElement('div');
@@ -303,12 +291,7 @@ MULOQOT QOIDALARI:
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
-                        system_instruction: SYSTEM_INSTRUCTION,
-                        contents: conversationHistory,
-                        generationConfig: {
-                            temperature: 0.7,
-                            maxOutputTokens: 800
-                        }
+                        contents: conversationHistory
                     })
                 });
 
@@ -321,15 +304,14 @@ MULOQOT QOIDALARI:
                         parts: [{ text: aiText }]
                     });
 
+                    // Clean thinking steps if outputting formatted markdown
+                    aiText = aiText.replace(/\*   Input:[\s\S]*?\*Final Draft:\*\s*/i, '').trim();
+
                     let formatted = aiText
                         .replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')
                         .replace(/\*(.*?)\*/g, '<i>$1</i>')
                         .replace(/^\* /gm, '• ')
                         .replace(/\n/g, '<br>');
-
-                    if (formatted.toLowerCase().includes("telegram") && !formatted.includes("btn-telegram")) {
-                        formatted += `<br><br><a href="https://t.me/azizbeky" target="_blank" class="btn btn-telegram" style="display:inline-flex; padding:6px 14px; font-size:0.82rem;"><i class="fa-brands fa-telegram"></i> Telegramda Azizbek bilan bog'lanish</a>`;
-                    }
 
                     return formatted;
                 }
