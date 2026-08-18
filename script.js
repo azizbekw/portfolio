@@ -84,8 +84,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 "Yulduzlar evaziga sovg'alar almashtiriladigan Do'kon (Shop & Stock Count)",
                 "Adminlar uchun to'liq boshqaruv paneli (Sovg'a qo'shish/tahrirlash/o'chirish va kun savoli boshqaruvi)"
             ],
-            githubUrl: "https://t.me/beruniykitobbot",
-            tgUrl: "https://t.me/beruniykitobbot"
+            primaryBtnText: "Telegram Botni Ochish",
+            primaryBtnIcon: "fa-brands fa-telegram",
+            primaryBtnUrl: "https://t.me/beruniykitobbot",
+            primaryBtnClass: "btn-telegram",
+            secondaryBtnText: "Telegramda Muloqot",
+            secondaryBtnIcon: "fa-solid fa-comments",
+            secondaryBtnUrl: "https://t.me/azizbeky",
+            secondaryBtnClass: "btn-outline"
         },
         'php-task': {
             title: "Task & User Management System (PHP / SQLite)",
@@ -98,8 +104,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 "Vazifa holatlarini (Bajarildi / Bajarilmadi) bir bosishda yangilash",
                 "Foydalanuvchiga mos zamonaviy va responsive CSS interfeys"
             ],
-            githubUrl: "https://github.com/azizbekw/php-task-manager",
-            tgUrl: "https://t.me/azizbeky"
+            primaryBtnText: "GitHub Repozitoriyani Ochish",
+            primaryBtnIcon: "fa-brands fa-github",
+            primaryBtnUrl: "https://github.com/azizbekw/php-task-manager",
+            primaryBtnClass: "btn-primary",
+            secondaryBtnText: "Telegramda Muloqot",
+            secondaryBtnIcon: "fa-brands fa-telegram",
+            secondaryBtnUrl: "https://t.me/azizbeky",
+            secondaryBtnClass: "btn-telegram"
         },
         'web-portfolio': {
             title: "Personal Interactive Web Portfolio",
@@ -111,8 +123,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 "Loyihalar tafsilotlarini ko'rsatuvchi interaktiv Modal oynasi",
                 "GitHub Pages orqali ommaviy (public) domen va bepul hosting integratsiyasi"
             ],
-            githubUrl: "https://github.com/azizbekw/portfolio",
-            tgUrl: "https://t.me/azizbeky"
+            primaryBtnText: "GitHub Repozitoriyani Ochish",
+            primaryBtnIcon: "fa-brands fa-github",
+            primaryBtnUrl: "https://github.com/azizbekw/portfolio",
+            primaryBtnClass: "btn-primary",
+            secondaryBtnText: "Telegramda Muloqot",
+            secondaryBtnIcon: "fa-brands fa-telegram",
+            secondaryBtnUrl: "https://t.me/azizbeky",
+            secondaryBtnClass: "btn-telegram"
         }
     };
 
@@ -153,8 +171,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
 
                 <div class="modal-actions">
-                    <a href="${data.githubUrl}" target="_blank" class="btn btn-primary"><i class="fa-brands fa-github"></i> GitHub Repozitoriyani Ochish</a>
-                    <a href="${data.tgUrl}" target="_blank" class="btn btn-telegram"><i class="fa-brands fa-telegram"></i> Telegramda Muloqot</a>
+                    <a href="${data.primaryBtnUrl}" target="_blank" class="btn ${data.primaryBtnClass}"><i class="${data.primaryBtnIcon}"></i> ${data.primaryBtnText}</a>
+                    <a href="${data.secondaryBtnUrl}" target="_blank" class="btn ${data.secondaryBtnClass}"><i class="${data.secondaryBtnIcon}"></i> ${data.secondaryBtnText}</a>
                 </div>
             `;
 
