@@ -72,6 +72,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 4. Modal Window Data & Logic
     const projectDetails = {
+        'book-bot': {
+            title: "Kitoblar & Kun Savoli Telegram Boti (aiogram 3 / SQLite)",
+            category: "Python & Telegram Bot Architecture",
+            description: "Ushbu Telegram bot elektron hamda offline kitoblar o'qish, kunlik bilimni sinovchi viktorinalar o'tkazish, foydalanuvchilarni yulduzlar bilan rag'batlantirish hamda yulduzlar evaziga sovg'alar beruvchi Do'kon (Shop & Stock) tizimiga ega kompleks loyihadir.",
+            features: [
+                "Inline interfeysli zamonaviy va silliq xabarlar navigatsiyasi (edit_text)",
+                "Elektron va Offline kitoblar katalogi hamda nom va janr bo'yicha qidiruv",
+                "Kunlik viktorinalar (Kun savoli), taymer va avtomatik yulduzlar mukofotlash",
+                "Eng faol bilimdonlar reytingi (Top 5 Leaderboard)",
+                "Yulduzlar evaziga sovg'alar almashtiriladigan Do'kon (Shop & Stock Count)",
+                "Adminlar uchun to'liq boshqaruv paneli (Sovg'a qo'shish/tahrirlash/o'chirish va kun savoli boshqaruvi)"
+            ],
+            githubUrl: "https://t.me/beruniykitobbot",
+            tgUrl: "https://t.me/beruniykitobbot"
+        },
         'php-task': {
             title: "Task & User Management System (PHP / SQLite)",
             category: "PHP & Web Backend Application",

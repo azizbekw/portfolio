@@ -537,6 +537,7 @@ body.light-theme .navbar {
     position: relative;
 }
 
+.python-bg { background: linear-gradient(135deg, #1e3a5f 0%, #3776ab 100%); }
 .php-bg { background: linear-gradient(135deg, #4f5b93 0%, #1e293b 100%); }
 .web-bg { background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%); }
 
@@ -621,6 +622,18 @@ body.light-theme .navbar {
 
 .open-modal-btn:hover {
     background: var(--primary-hover);
+}
+
+.demo-link {
+    background: #0088cc;
+    color: #ffffff;
+    border: 1px solid #0088cc;
+}
+
+.demo-link:hover {
+    background: #0077b5;
+    border-color: #0077b5;
+    color: #ffffff;
 }
 
 .github-link {

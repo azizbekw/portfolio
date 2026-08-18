@@ -215,14 +215,37 @@
             <!-- Filter Buttons -->
             <div class="filter-container">
                 <button class="filter-btn active" data-filter="all">Barchasi</button>
+                <button class="filter-btn" data-filter="python">Python & Bot</button>
                 <button class="filter-btn" data-filter="php">PHP & Web</button>
                 <button class="filter-btn" data-filter="html">HTML / CSS</button>
             </div>
 
             <!-- Projects Grid -->
             <div class="projects-grid" id="projectsGrid">
+
+                <!-- Project 1: Book Exchange & Quiz Telegram Bot -->
+                <div class="project-card glass-card clickable-card" data-category="python" data-project="book-bot">
+                    <div class="project-banner python-bg">
+                        <i class="fa-brands fa-python banner-icon"></i>
+                        <span class="category-badge">Python / Telegram Bot</span>
+                    </div>
+                    <div class="project-content">
+                        <h3>Kitoblar & Kun Savoli Telegram Boti</h3>
+                        <p>aiogram 3 va SQLite bazasida yaratilgan to'liq Telegram bot. Kitoblar katalogi, kunlik viktorinalar, foydalanuvchilar reytingi hamda yulduzlar evaziga sovg'alar beruvchi Do'kon (Shop & Stock) tizimiga ega.</p>
+                        <div class="project-tags">
+                            <span>Python 3</span>
+                            <span>aiogram 3</span>
+                            <span>SQLite</span>
+                            <span>Shop & Rewards</span>
+                        </div>
+                        <div class="project-links">
+                            <button class="proj-link open-modal-btn" data-modal="book-bot" onclick="event.stopPropagation();"><i class="fa-solid fa-circle-info"></i> Batafsil</button>
+                            <a href="https://t.me/beruniykitobbot" target="_blank" class="proj-link demo-link" onclick="event.stopPropagation();"><i class="fa-brands fa-telegram"></i> Botga O'tish</a>
+                        </div>
+                    </div>
+                </div>
                 
-                <!-- Project 1: PHP Task Management System -->
+                <!-- Project 2: PHP Task Management System -->
                 <div class="project-card glass-card clickable-card" data-category="php" data-project="php-task">
                     <div class="project-banner php-bg">
                         <i class="fa-brands fa-php banner-icon"></i>
@@ -238,13 +261,13 @@
                             <span>CSS3</span>
                         </div>
                         <div class="project-links">
-                            <button class="proj-link open-modal-btn" data-modal="php-task"><i class="fa-solid fa-circle-info"></i> Batafsil Ko'rish</button>
+                            <button class="proj-link open-modal-btn" data-modal="php-task" onclick="event.stopPropagation();"><i class="fa-solid fa-circle-info"></i> Batafsil</button>
                             <a href="https://github.com/azizbekw/php-task-manager" target="_blank" class="proj-link github-link" onclick="event.stopPropagation();"><i class="fa-brands fa-github"></i> GitHub</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Project 2: Interactive Web Portfolio -->
+                <!-- Project 3: Interactive Web Portfolio -->
                 <div class="project-card glass-card clickable-card" data-category="html" data-project="web-portfolio">
                     <div class="project-banner web-bg">
                         <i class="fa-solid fa-code banner-icon"></i>
@@ -260,7 +283,7 @@
                             <span>Glassmorphism</span>
                         </div>
                         <div class="project-links">
-                            <button class="proj-link open-modal-btn" data-modal="web-portfolio" onclick="event.stopPropagation();"><i class="fa-solid fa-circle-info"></i> Batafsil Ko'rish</button>
+                            <button class="proj-link open-modal-btn" data-modal="web-portfolio" onclick="event.stopPropagation();"><i class="fa-solid fa-circle-info"></i> Batafsil</button>
                             <a href="https://github.com/azizbekw/portfolio" target="_blank" class="proj-link github-link" onclick="event.stopPropagation();"><i class="fa-brands fa-github"></i> GitHub</a>
                         </div>
                     </div>
