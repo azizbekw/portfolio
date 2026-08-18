@@ -258,6 +258,32 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
+        const GEMINI_API_KEY = 'AIzaSyCwqTL6ZB-W8kukvSiJGIXUjk756HQTqYo';
+        const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${GEMINI_API_KEY}`;
+
+        let conversationHistory = [];
+
+        const SYSTEM_INSTRUCTION = {
+            parts: [{
+                text: `Siz Sa'dullayev Azizbekning rasmiy portfolio saytidagi aqlli, do'stona va psixologik maslahatchi AI Yordamchisiz. Sizning asosiy vazifangiz tashrif buyuruvchilar bilan samimiy suhbatlashish va ularni Azizbek bilan ishlashga ishontirishdir.
+
+AZIZBEK HAQIDA MA'LUMOTLAR:
+- Ismi: Sa'dullayev Azizbek
+- Mutaxassisliklari: Java, Python (aiogram 3 Telegram botlar arxitekturasi), PHP (SQLite/MySQL Web Backend), Android Studio (Mobil ilovalar), HTML5/CSS3/JS.
+- Telegram: @azizbeky (https://t.me/azizbeky)
+- Mobil raqami: +998 95 817 0023
+- Instagram: https://www.instagram.com/azizbe.ky
+- Xarakteri: Mas'uliyatli, loyihani sifatli va o'z vaqtida topshiradi, individual yondashadi.
+
+MULOQOT QOIDALARI:
+1. Muloqotni har doim o'zbek tilida, do'stona va professional olib boring.
+2. Foydalanuvchi loyiha yoki dasturlash haqida so'rasa, Azizbekning kuchli tomonlarini maqlang hamda nega aynan u bilan ishlash kerakligini psixologik jihatdan tushuntiring.
+3. Har doim foydalanuvchidan loyihasi haqida so'rang (Masalan: 'Sizga qanday loyiha yoki ilova kerak?').
+4. Har bir javobingiz oxirida foydalanuvchini Telegram orqali Azizbek bilan bog'lanishga undang (@azizbeky).
+5. Foydalanuvchi har qanday umumiy savol yoki mavzuda so'rasa (ilm-fan, texnologiya, hayotiy va b.), xuddi aqlli AI assistant kabi to'liq va foydali javob bering.`
+            }]
+        };
+
         function appendMessage(text, isUser = false) {
             const msgDiv = document.createElement('div');
             msgDiv.className = `ai-msg ${isUser ? 'user-msg' : 'bot-msg'}`;
@@ -266,58 +292,68 @@ document.addEventListener('DOMContentLoaded', () => {
             aiChatBody.scrollTop = aiChatBody.scrollHeight;
         }
 
-        function generateAiResponse(userText) {
-            const query = userText.toLowerCase().trim();
+        async function fetchGeminiResponse(userText) {
+            conversationHistory.push({
+                role: "user",
+                parts: [{ text: userText }]
+            });
 
-            if (query.includes("nima") || query.includes("qila oladi") || query.includes("ko'nikma") || query.includes("tajriba") || query.includes("biladi")) {
-                return `🚀 **Azizbek — ko'p qirrali va yuqori tajribali dasturchi!**<br><br>` +
-                       `U quyidagi yo'nalishlarda professional dasturiy yechimlar yarata oladi:<br>` +
-                       `• 💻 **PHP & Web Backend**: SQLite/MySQL bazali har qanday murakkablikdagi web tizimlar.<br>` +
-                       `• 🤖 **Python & Telegram Bot**: Kompleks interaktiv botlar, viktorinalar, do'kon (shop & stock) tizimlari (aiogram 3).<br>` +
-                       `• 📱 **Android Developer**: Android Studio'da mobil ilovalar.<br>` +
-                       `• 🎨 **Frontend**: HTML5, CSS3, JavaScript modern interfeyslar.<br><br>` +
-                       `Sizga aynan qaysi yo'nalish bo'yicha ilova kerak?`;
+            try {
+                const response = await fetch(GEMINI_API_URL, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        system_instruction: SYSTEM_INSTRUCTION,
+                        contents: conversationHistory,
+                        generationConfig: {
+                            temperature: 0.7,
+                            maxOutputTokens: 800
+                        }
+                    })
+                });
+
+                const data = await response.json();
+                if (data.candidates && data.candidates[0] && data.candidates[0].content) {
+                    let aiText = data.candidates[0].content.parts[0].text;
+
+                    conversationHistory.push({
+                        role: "model",
+                        parts: [{ text: aiText }]
+                    });
+
+                    let formatted = aiText
+                        .replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')
+                        .replace(/\*(.*?)\*/g, '<i>$1</i>')
+                        .replace(/^\* /gm, '• ')
+                        .replace(/\n/g, '<br>');
+
+                    if (formatted.toLowerCase().includes("telegram") && !formatted.includes("btn-telegram")) {
+                        formatted += `<br><br><a href="https://t.me/azizbeky" target="_blank" class="btn btn-telegram" style="display:inline-flex; padding:6px 14px; font-size:0.82rem;"><i class="fa-brands fa-telegram"></i> Telegramda Azizbek bilan bog'lanish</a>`;
+                    }
+
+                    return formatted;
+                }
+            } catch (err) {
+                console.error("Gemini API Error:", err);
             }
 
-            if (query.includes("nega") || query.includes("tanlash") || query.includes("afzallik") || query.includes("ishonch") || query.includes("yaxshi")) {
-                return `⭐️ **Nega aynan Azizbek Sa'dullayevni tanlash kerak?**<br><br>` +
-                       `1. **Har bir loyihaga individual yondashuv**: U shunchaki kod yozmaydi, mahsulotingiz mijozlaringizga haqiqiy qiymat va daromad keltirishini ta'minlaydi.<br>` +
-                       `2. **Mukammallik va Tartib**: Kodning tozaligi, xavfsizligi va tezkorligiga alohida e'tibor beradi.<br>` +
-                       `3. **Tugallangan va Ishonchli yechim**: Loyihani o'z vaqtida, sinovdan o'tkazib topshiradi.<br><br>` +
-                       `👉 **Xulosa:** Azizbek bilan ishlash — bu xotirjamlik va yuqori natija demakdir! G'oyangizni unga ishonib topshirishingiz mumkin.`;
-            }
-
-            if (query.includes("loyiha") || query.includes("bot") || query.includes("sayt") || query.includes("veb") || query.includes("narx") || query.includes("buyurtma")) {
-                return `💡 **Ajoyib! Loyihangizni birgalikda amalga oshiramiz!**<br><br>` +
-                       `Azizbek sizning biznesingiz yoki loyihangiz uchun eng optimal texnik yechimni taklif qiladi.<br><br>` +
-                       `Do'stona maslahat olish yoki texnik topshiriqni muhokama qilish uchun hoziroq uning shaxsiy Telegramiga yozing:<br><br>` +
-                       `<a href="https://t.me/azizbeky" target="_blank" class="btn btn-telegram" style="display:inline-flex; padding:6px 14px; margin-top:4px; font-size:0.82rem;"><i class="fa-brands fa-telegram"></i> Telegramda Azizbek bilan bog'lanish</a>`;
-            }
-
-            if (query.includes("bog'lanish") || query.includes("aloqa") || query.includes("kontakt") || query.includes("raqam") || query.includes("nomer")) {
-                return `📞 **Azizbek bilan bog'lanish juda oson:**<br><br>` +
-                       `• 💬 **Telegram:** <a href="https://t.me/azizbeky" target="_blank">@azizbeky</a><br>` +
-                       `• 📱 **Mobil raqam:** <a href="tel:+998958170023">+998 95 817 0023</a><br>` +
-                       `• 📧 **Email:** azizbeksadullayev0023@gmail.com<br><br>` +
-                       `U bilan hoziroq suhbatlashib, loyihangizni muhokama qilishingiz mumkin! 🚀`;
-            }
-
-            return `😊 **Juda qiziqarli savol!**<br><br>` +
-                   `Azizbek sizning talabingiz va g'oyangizga mos keladigan optimal dasturiy yechimni tayyorlab bera oladi.<br><br>` +
-                   `U bilan shaxsan fikr almashish va loyihangizni tez fursatda boshlash uchun Telegram orqali bog'lanishingizni tavsiya qilaman:<br><br>` +
-                   `<a href="https://t.me/azizbeky" target="_blank" class="btn btn-telegram" style="display:inline-flex; padding:6px 14px; font-size:0.82rem;"><i class="fa-brands fa-telegram"></i> Telegramda yozish (@azizbeky)</a>`;
+            return `🚀 **Azizbek — ko'p qirrali va tajribali dasturchi!**<br><br>` +
+                   `U sizning loyihangiz uchun eng optimal dasturiy yechimni tayyorlab bera oladi.<br><br>` +
+                   `<a href="https://t.me/azizbeky" target="_blank" class="btn btn-telegram" style="display:inline-flex; padding:6px 14px; font-size:0.82rem;"><i class="fa-brands fa-telegram"></i> Telegramda bog'lanish (@azizbeky)</a>`;
         }
 
-        function handleSend() {
+        async function handleSend() {
             const text = aiChatInput.value.trim();
             if (!text) return;
             appendMessage(text, true);
             aiChatInput.value = '';
 
-            setTimeout(() => {
-                const reply = generateAiResponse(text);
-                appendMessage(reply, false);
-            }, 500);
+            appendMessage("⏳ <i>AI javob tayyorlamoqda...</i>", false);
+            const loadingMsg = aiChatBody.lastElementChild;
+
+            const reply = await fetchGeminiResponse(text);
+            if (loadingMsg) loadingMsg.remove();
+            appendMessage(reply, false);
         }
 
         aiChatSend.addEventListener('click', handleSend);
@@ -327,13 +363,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (aiChatChips) {
             aiChatChips.querySelectorAll('.chip-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
+                btn.addEventListener('click', async () => {
                     const query = btn.getAttribute('data-query');
                     appendMessage(query, true);
-                    setTimeout(() => {
-                        const reply = generateAiResponse(query);
-                        appendMessage(reply, false);
-                    }, 400);
+
+                    appendMessage("⏳ <i>AI javob tayyorlamoqda...</i>", false);
+                    const loadingMsg = aiChatBody.lastElementChild;
+
+                    const reply = await fetchGeminiResponse(query);
+                    if (loadingMsg) loadingMsg.remove();
+                    appendMessage(reply, false);
                 });
             });
         }
