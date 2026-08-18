@@ -237,6 +237,107 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // 6. Floating AI Assistant Chatbot Logic
+    const aiChatTrigger = document.getElementById('aiChatTrigger');
+    const aiChatWindow = document.getElementById('aiChatWindow');
+    const aiChatClose = document.getElementById('aiChatClose');
+    const aiChatBody = document.getElementById('aiChatBody');
+    const aiChatInput = document.getElementById('aiChatInput');
+    const aiChatSend = document.getElementById('aiChatSend');
+    const aiChatChips = document.getElementById('aiChatChips');
+
+    if (aiChatTrigger && aiChatWindow) {
+        aiChatTrigger.addEventListener('click', () => {
+            aiChatWindow.classList.toggle('active');
+        });
+
+        if (aiChatClose) {
+            aiChatClose.addEventListener('click', () => {
+                aiChatWindow.classList.remove('active');
+            });
+        }
+
+        function appendMessage(text, isUser = false) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `ai-msg ${isUser ? 'user-msg' : 'bot-msg'}`;
+            msgDiv.innerHTML = `<div class="msg-bubble">${text}</div>`;
+            aiChatBody.appendChild(msgDiv);
+            aiChatBody.scrollTop = aiChatBody.scrollHeight;
+        }
+
+        function generateAiResponse(userText) {
+            const query = userText.toLowerCase().trim();
+
+            if (query.includes("nima") || query.includes("qila oladi") || query.includes("ko'nikma") || query.includes("tajriba") || query.includes("biladi")) {
+                return `🚀 **Azizbek — ko'p qirrali va yuqori tajribali dasturchi!**<br><br>` +
+                       `U quyidagi yo'nalishlarda professional dasturiy yechimlar yarata oladi:<br>` +
+                       `• 💻 **PHP & Web Backend**: SQLite/MySQL bazali har qanday murakkablikdagi web tizimlar.<br>` +
+                       `• 🤖 **Python & Telegram Bot**: Kompleks interaktiv botlar, viktorinalar, do'kon (shop & stock) tizimlari (aiogram 3).<br>` +
+                       `• 📱 **Android Developer**: Android Studio'da mobil ilovalar.<br>` +
+                       `• 🎨 **Frontend**: HTML5, CSS3, JavaScript modern interfeyslar.<br><br>` +
+                       `Sizga aynan qaysi yo'nalish bo'yicha ilova kerak?`;
+            }
+
+            if (query.includes("nega") || query.includes("tanlash") || query.includes("afzallik") || query.includes("ishonch") || query.includes("yaxshi")) {
+                return `⭐️ **Nega aynan Azizbek Sa'dullayevni tanlash kerak?**<br><br>` +
+                       `1. **Har bir loyihaga individual yondashuv**: U shunchaki kod yozmaydi, mahsulotingiz mijozlaringizga haqiqiy qiymat va daromad keltirishini ta'minlaydi.<br>` +
+                       `2. **Mukammallik va Tartib**: Kodning tozaligi, xavfsizligi va tezkorligiga alohida e'tibor beradi.<br>` +
+                       `3. **Tugallangan va Ishonchli yechim**: Loyihani o'z vaqtida, sinovdan o'tkazib topshiradi.<br><br>` +
+                       `👉 **Xulosa:** Azizbek bilan ishlash — bu xotirjamlik va yuqori natija demakdir! G'oyangizni unga ishonib topshirishingiz mumkin.`;
+            }
+
+            if (query.includes("loyiha") || query.includes("bot") || query.includes("sayt") || query.includes("veb") || query.includes("narx") || query.includes("buyurtma")) {
+                return `💡 **Ajoyib! Loyihangizni birgalikda amalga oshiramiz!**<br><br>` +
+                       `Azizbek sizning biznesingiz yoki loyihangiz uchun eng optimal texnik yechimni taklif qiladi.<br><br>` +
+                       `Do'stona maslahat olish yoki texnik topshiriqni muhokama qilish uchun hoziroq uning shaxsiy Telegramiga yozing:<br><br>` +
+                       `<a href="https://t.me/azizbeky" target="_blank" class="btn btn-telegram" style="display:inline-flex; padding:6px 14px; margin-top:4px; font-size:0.82rem;"><i class="fa-brands fa-telegram"></i> Telegramda Azizbek bilan bog'lanish</a>`;
+            }
+
+            if (query.includes("bog'lanish") || query.includes("aloqa") || query.includes("kontakt") || query.includes("raqam") || query.includes("nomer")) {
+                return `📞 **Azizbek bilan bog'lanish juda oson:**<br><br>` +
+                       `• 💬 **Telegram:** <a href="https://t.me/azizbeky" target="_blank">@azizbeky</a><br>` +
+                       `• 📱 **Mobil raqam:** <a href="tel:+998958170023">+998 95 817 0023</a><br>` +
+                       `• 📧 **Email:** azizbeksadullayev0023@gmail.com<br><br>` +
+                       `U bilan hoziroq suhbatlashib, loyihangizni muhokama qilishingiz mumkin! 🚀`;
+            }
+
+            return `😊 **Juda qiziqarli savol!**<br><br>` +
+                   `Azizbek sizning talabingiz va g'oyangizga mos keladigan optimal dasturiy yechimni tayyorlab bera oladi.<br><br>` +
+                   `U bilan shaxsan fikr almashish va loyihangizni tez fursatda boshlash uchun Telegram orqali bog'lanishingizni tavsiya qilaman:<br><br>` +
+                   `<a href="https://t.me/azizbeky" target="_blank" class="btn btn-telegram" style="display:inline-flex; padding:6px 14px; font-size:0.82rem;"><i class="fa-brands fa-telegram"></i> Telegramda yozish (@azizbeky)</a>`;
+        }
+
+        function handleSend() {
+            const text = aiChatInput.value.trim();
+            if (!text) return;
+            appendMessage(text, true);
+            aiChatInput.value = '';
+
+            setTimeout(() => {
+                const reply = generateAiResponse(text);
+                appendMessage(reply, false);
+            }, 500);
+        }
+
+        aiChatSend.addEventListener('click', handleSend);
+        aiChatInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') handleSend();
+        });
+
+        if (aiChatChips) {
+            aiChatChips.querySelectorAll('.chip-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const query = btn.getAttribute('data-query');
+                    appendMessage(query, true);
+                    setTimeout(() => {
+                        const reply = generateAiResponse(query);
+                        appendMessage(reply, false);
+                    }, 400);
+                });
+            });
+        }
+    }
 });
 
 // Keyframe animation
