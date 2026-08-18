@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sa'dullayev Azizbek | Portfolio & Rezyume</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+
+    <!-- Header / Navbar -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">Azizbek<span>.dev</span></a>
+            <nav class="nav-menu" id="navMenu">
+                <a href="#about" class="nav-link"><i class="fa-solid fa-user"></i> Haqimda</a>
+                <a href="#skills" class="nav-link"><i class="fa-solid fa-code"></i> Ko'nikmalar</a>
+                <a href="#projects" class="nav-link"><i class="fa-solid fa-folder-open"></i> Loyihalar</a>
+                <a href="#extra" class="nav-link"><i class="fa-solid fa-star"></i> Qo'shimcha</a>
+                <a href="#contact" class="nav-link"><i class="fa-solid fa-envelope"></i> Aloqa</a>
+            </nav>
+            <div class="nav-actions">
+                <button id="themeToggle" class="theme-btn" aria-label="Mavzuni o'zgartirish">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <div class="hamburger" id="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <div class="badge"><i class="fa-solid fa-rocket"></i> Izlanishdagi Dasturchi</div>
+                <h1>Salom, men <span class="gradient-text">Sa'dullayev Azizbek</span></h1>
+                <p class="hero-subtitle">Java, Python, PHP hamda Web & Mobil texnologiyalar yordamida zamonaviy va foydali loyihalar yarataman.</p>
+                
+                <!-- Bio Box -->
+                <div class="bio-box">
+                    <i class="fa-solid fa-quote-left quote-icon"></i>
+                    <p>Dasturlash sohasida doimiy izlanishdagi dasturchiman. Har bir loyihada yangi bilimlarni amalda qo'llayman va turli dasturlash tillarida muammolarga optimal yechimlar yaratishni yaxshi ko'raman. Android Studio'da mobil ilovalar yaratish va raqamli kontent tayyorlash bo'yicha ham amaliy tajribaga egaman.</p>
+                </div>
+
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary"><i class="fa-solid fa-laptop-code"></i> Loyihalarimni ko'rish</a>
+                    <a href="https://t.me/azizbeky" target="_blank" class="btn btn-telegram"><i class="fa-brands fa-telegram"></i> Telegram profil</a>
+                    <a href="tel:+998958170023" class="btn btn-outline"><i class="fa-solid fa-phone"></i> +998 95 817 0023</a>
+                </div>
+            </div>
+
+            <div class="hero-card-wrapper">
+                <div class="hero-card glass-card">
+                    <div class="avatar-box">
+                        <i class="fa-solid fa-user-ninja avatar-icon"></i>
+                    </div>
+                    <h3>Sa'dullayev Azizbek</h3>
+                    <p class="role">Software & Web Developer</p>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-number">4+</span>
+                            <span class="stat-label">Asosiy tillar</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">Multi</span>
+                            <span class="stat-label">Platformalar</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">Android</span>
+                            <span class="stat-label">Studio & Web</span>
+                        </div>
+                    </div>
+                    <div class="contact-quick">
+                        <a href="tel:+998958170023"><i class="fa-solid fa-phone"></i> +998 95 817 0023</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about" id="about">
+        <div class="container">
+            <h2 class="section-title">Men haqimda <span class="gradient-text">va Tajribam</span></h2>
+            <div class="about-grid">
+                <div class="about-card glass-card">
+                    <div class="card-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <h3>Bilim va Amaliyot</h3>
+                    <p>Bir nechta dasturlash tillarini puxta o'rganganman va amaliyotda qo'llab kelyapman. Doimiy o'rganish va izlanish jarayonidaman.</p>
+                </div>
+                <div class="about-card glass-card">
+                    <div class="card-icon"><i class="fa-solid fa-layer-group"></i></div>
+                    <h3>Ko'p tilli yondashuv</h3>
+                    <p>Java, Python, PHP, HTML/CSS kabi tillarda tayanch tushunchalarga hamda muammosiz loyihalar yaratish ko'nikmasiga egaman.</p>
+                </div>
+                <div class="about-card glass-card">
+                    <div class="card-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                    <h3>Mobil va Kontent</h3>
+                    <p>Android Studio platformasida mobil ilovalar yarataman va ijtimoiy tarmoqlarda (Telegram, Instagram) kontent yuritaman.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section skills" id="skills">
+        <div class="container">
+            <h2 class="section-title">Dasturlash Tillar va <span class="gradient-text">Texnologiyalar</span></h2>
+            <p class="section-subtitle">Men faol foydalanadigan va loyihalar yaratadigan asosiy vositalar</p>
+
+            <div class="skills-grid">
+                <!-- Java -->
+                <div class="skill-card glass-card">
+                    <div class="skill-header">
+                        <i class="fa-brands fa-java skill-icon java"></i>
+                        <h4>Java</h4>
+                    </div>
+                    <p>Obyektga yo'naltirilgan dasturlash (OOP), algoritmik mantiq va Android ilovalar asosi.</p>
+                    <div class="tag-list">
+                        <span class="tag">OOP</span>
+                        <span class="tag">Android Dev</span>
+                        <span class="tag">Core Java</span>
+                    </div>
+                </div>
+
+                <!-- Python -->
+                <div class="skill-card glass-card">
+                    <div class="skill-header">
+                        <i class="fa-brands fa-python skill-icon python"></i>
+                        <h4>Python</h4>
+                    </div>
+                    <p>Skriptlar yozish, Telegram botlar, ma'lumotlar bilan ishlash va avtomatlashtirish.</p>
+                    <div class="tag-list">
+                        <span class="tag">Automation</span>
+                        <span class="tag">Bots</span>
+                        <span class="tag">Scripting</span>
+                    </div>
+                </div>
+
+                <!-- PHP -->
+                <div class="skill-card glass-card">
+                    <div class="skill-header">
+                        <i class="fa-brands fa-php skill-icon php"></i>
+                        <h4>PHP</h4>
+                    </div>
+                    <p>Web-saytlarning backend qismi, ma'lumotlar bazasi bilan ishlash va dinamik web tizimlar.</p>
+                    <div class="tag-list">
+                        <span class="tag">Backend</span>
+                        <span class="tag">MySQL/SQLite</span>
+                        <span class="tag">Web API</span>
+                    </div>
+                </div>
+
+                <!-- HTML / CSS -->
+                <div class="skill-card glass-card">
+                    <div class="skill-header">
+                        <i class="fa-brands fa-html5 skill-icon html"></i>
+                        <h4>HTML5 & CSS3</h4>
+                    </div>
+                    <p>Zamonaviy, responsive (moslashuvchan) va estetik web sahifalar yaratish.</p>
+                    <div class="tag-list">
+                        <span class="tag">Flexbox & Grid</span>
+                        <span class="tag">Responsive</span>
+                        <span class="tag">UI/UX</span>
+                    </div>
+                </div>
+
+                <!-- Android Studio -->
+                <div class="skill-card glass-card">
+                    <div class="skill-header">
+                        <i class="fa-brands fa-android skill-icon android"></i>
+                        <h4>Android Studio</h4>
+                    </div>
+                    <p>Android smartfonlar uchun mobil ilovalar interfeysi hamda mantiqiy qismini ishlab chiqish.</p>
+                    <div class="tag-list">
+                        <span class="tag">Mobile Apps</span>
+                        <span class="tag">XML Layouts</span>
+                        <span class="tag">SDK</span>
+                    </div>
+                </div>
+
+                <!-- Other Languages / Tools -->
+                <div class="skill-card glass-card">
+                    <div class="skill-header">
+                        <i class="fa-solid fa-cubes skill-icon tools"></i>
+                        <h4>Qo'shimcha Tillar & Git</h4>
+                    </div>
+                    <p>Boshqa dasturlash tillarida asosiy tushunchalar va Git/GitHub bilan ishlash tajribasi.</p>
+                    <div class="tag-list">
+                        <span class="tag">Git & GitHub</span>
+                        <span class="tag">Basic C/C++</span>
+                        <span class="tag">Problem Solving</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Showcase Section -->
+    <section class="section projects" id="projects">
+        <div class="container">
+            <h2 class="section-title">Mening <span class="gradient-text">Loyihalarim</span></h2>
+            <p class="section-subtitle">Batafsil ma'lumot olish uchun kartochkani bosing</p>
+
+            <!-- Filter Buttons -->
+            <div class="filter-container">
+                <button class="filter-btn active" data-filter="all">Barchasi</button>
+                <button class="filter-btn" data-filter="php">PHP & Web</button>
+                <button class="filter-btn" data-filter="html">HTML / CSS</button>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="projects-grid" id="projectsGrid">
+                
+                <!-- Project 1: PHP Task Management System -->
+                <div class="project-card glass-card clickable-card" data-category="php" data-project="php-task">
+                    <div class="project-banner php-bg">
+                        <i class="fa-brands fa-php banner-icon"></i>
+                        <span class="category-badge">PHP / Web App</span>
+                    </div>
+                    <div class="project-content">
+                        <h3>Task & User Management System</h3>
+                        <p>PHP va SQLite ma'lumotlar bazasida yaratilgan to'liq web ilova. Ro'yxatdan o'tish (Auth), kirish/chiqish, vazifalarni yaratish, holatini o'zgartirish hamda tahrirlash imkoniyatiga ega.</p>
+                        <div class="project-tags">
+                            <span>PHP</span>
+                            <span>SQLite</span>
+                            <span>Session Auth</span>
+                            <span>CSS3</span>
+                        </div>
+                        <div class="project-links">
+                            <button class="proj-link open-modal-btn"><i class="fa-solid fa-circle-info"></i> Batafsil Ko'rish</button>
+                            <a href="https://github.com/azizbekw/php-task-manager" target="_blank" class="proj-link github-link" onclick="event.stopPropagation();"><i class="fa-brands fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Interactive Web Portfolio -->
+                <div class="project-card glass-card clickable-card" data-category="html" data-project="web-portfolio">
+                    <div class="project-banner web-bg">
+                        <i class="fa-solid fa-code banner-icon"></i>
+                        <span class="category-badge">HTML / CSS / JS</span>
+                    </div>
+                    <div class="project-content">
+                        <h3>Interactive Web Portfolio</h3>
+                        <p>Ushbu rezyume va portfolio veb-sayti. HTML5, CSS3 hamda JavaScript yordamida yaratilgan. Glassmorphic zamonaviy dizayn, Dark/Light rejim hamda loyihalarni filtrlash tizimi joylangan.</p>
+                        <div class="project-tags">
+                            <span>HTML5</span>
+                            <span>CSS3</span>
+                            <span>JavaScript</span>
+                            <span>Glassmorphism</span>
+                        </div>
+                        <div class="project-links">
+                            <button class="proj-link open-modal-btn"><i class="fa-solid fa-circle-info"></i> Batafsil Ko'rish</button>
+                            <a href="https://github.com/azizbekw/portfolio" target="_blank" class="proj-link github-link" onclick="event.stopPropagation();"><i class="fa-brands fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Details Modal Container -->
+    <div class="modal-overlay" id="projectModalOverlay">
+        <div class="modal-card glass-card">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <div id="modalBody">
+                <!-- Content loaded dynamically via script.js -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Additional Skills & Social Media Section -->
+    <section class="section extra" id="extra">
+        <div class="container">
+            <h2 class="section-title">Qo'shimcha <span class="gradient-text">Qobiliyatlarim</span></h2>
+            <p class="section-subtitle">Dasturlashdan tashqari amaliy va raqamli kontent yaratish tajribalarim</p>
+
+            <div class="extra-grid">
+                <!-- Android Studio -->
+                <div class="extra-card glass-card">
+                    <div class="extra-icon"><i class="fa-brands fa-android"></i></div>
+                    <h3>Android Studio tajribasi</h3>
+                    <p>Mobil ilovalarning arxitekturasi va interfeyslarini yaratish, emulator va real qurilmalarda test qilish hamda optimallashtirish.</p>
+                </div>
+
+                <!-- Telegram Channels -->
+                <div class="extra-card glass-card">
+                    <div class="extra-icon"><i class="fa-brands fa-telegram"></i></div>
+                    <h3>Telegram Kanal Yuritish</h3>
+                    <p>Telegramda sifatli va jalb qiluvchi postlar tayyorlash, auditoriyani boshqarish hamda kanallarni kontent bilan boyitish.</p>
+                </div>
+
+                <!-- Instagram Content -->
+                <div class="extra-card glass-card">
+                    <div class="extra-icon"><i class="fa-brands fa-instagram"></i></div>
+                    <h3>Instagram Kontent & Postlar</h3>
+                    <p>Ijtimoiy tarmoqlar uchun vizual dizaynli va mazmunli postlar va tavsiyalar tayyorlash tajribasi.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <div class="contact-box glass-card">
+                <h2 class="section-title">Men bilan <span class="gradient-text">Bog'laning</span></h2>
+                <p>Birga yangi loyihalar yarataylik yoki savollaringiz bo'lsa bemalol bog'laning!</p>
+
+                <div class="contact-links">
+                    <!-- 1. Mobile Phone -->
+                    <a href="tel:+998958170023" class="contact-card">
+                        <i class="fa-solid fa-phone contact-icon phone"></i>
+                        <div class="contact-card-info">
+                            <h4>Mobil Raqam</h4>
+                            <p>+998 95 817 0023</p>
+                        </div>
+                    </a>
+
+                    <!-- 2. Telegram -->
+                    <a href="https://t.me/azizbeky" target="_blank" class="contact-card">
+                        <i class="fa-brands fa-telegram contact-icon tg"></i>
+                        <div class="contact-card-info">
+                            <h4>Telegram</h4>
+                            <p>@azizbeky</p>
+                        </div>
+                    </a>
+
+                    <!-- 3. Email -->
+                    <a href="mailto:azizbeksadullayev0023@gmail.com" class="contact-card">
+                        <i class="fa-solid fa-envelope contact-icon mail"></i>
+                        <div class="contact-card-info">
+                            <h4>Email</h4>
+                            <p class="email-text">azizbeksadullayev0023@gmail.com</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <p>&copy; 2026 <strong>Sa'dullayev Azizbek</strong>. Barcha huquqlar himoyalangan.</p>
+            <div class="footer-socials">
+                <a href="tel:+998958170023" title="Mobil raqam"><i class="fa-solid fa-phone"></i></a>
+                <a href="https://t.me/azizbeky" target="_blank" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+                <a href="https://github.com/azizbekw" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="mailto:azizbeksadullayev0023@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script JS -->
+    <script src="script.js"></script>
+</body>
+</html>
